@@ -28,11 +28,8 @@ app.post('/login',(req,res)=>{
         }
     })
 })
-
 app.use('/events', Route);
-
 let PORT = 3000;
-
 app.listen(PORT,()=>{
     console.log('Escuchando en el puerto: '+PORT)
 })
