@@ -7,6 +7,7 @@ const mongoose = require('mongoose');
 const http = require('http');
 const path = require('path');
 const User = require('./model/user');
+const Event = require('./model/events')
 
 http.createServer(app);
 
@@ -20,7 +21,8 @@ app.use(session({
     saveUninitialized: true
 }));
 
-let connection = mongoose.connect('mongodb://localhost:27017/dbagenda',{useNewUrlParser: true,useUnifiedTopology: true});
+mongoose.createConnection("mongodb://localhost:27017/dbagenda",{useNewUrlParser: true,useUnifiedTopology: true});
+
 
 app.post('/login',(req,res)=>{
     let user = req.body.user;
