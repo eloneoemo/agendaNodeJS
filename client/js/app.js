@@ -120,3 +120,14 @@ class EventManager {
     }
 
     const Manager = new EventManager()
+$(document).ready(    
+    $('#log-out').click(function(e){
+        e.preventDefault();
+        $.post({
+            url: '/logout',
+            }).done(function(e){
+                if(e =='logout'){
+                    window.location.href ='http://localhost:3000/';
+                }
+            })
+}));

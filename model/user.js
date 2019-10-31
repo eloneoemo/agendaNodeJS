@@ -3,8 +3,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 let UserSchema = new Schema({
-    userId: [Schema.Types.ObjectId],
-    nombre: {type:String , required:true},
+    nombre: {type:String , required:true, unique:true},
     correo:{type:String , required:true},
     passw:{type:String , required:true},
     fechaNacimiento:{type:String,required:true}
