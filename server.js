@@ -21,7 +21,7 @@ app.use(session({
     saveUninitialized: true
 }));
 
-mongoose.createConnection("mongodb://localhost:27017/dbagenda",{useNewUrlParser: true,useUnifiedTopology: true});
+mongoose.connect("mongodb://localhost:27017/dbagenda",{useNewUrlParser: true,useUnifiedTopology: true});
 
 
 app.post('/login',(req,res)=>{

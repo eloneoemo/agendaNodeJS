@@ -15,7 +15,7 @@ class EventManager {
     }
 
     eliminarEvento(evento) {
-        let eventId = evento.id
+        let eventId = evento._id
         $.post('/events/delete/'+eventId, {id: eventId}, (response) => {
             alert(response)
         })
@@ -87,7 +87,7 @@ class EventManager {
                 center: 'title',
                 right: 'month,agendaWeek,basicDay'
             },
-            defaultDate: '2016-11-01',
+            defaultDate: '2019-10-01',
             navLinks: true,
             editable: true,
             eventLimit: true,
