@@ -1,6 +1,6 @@
 
 const Route =  require('express').Router();
-const Evento = require('../model/events');
+const Evento = require('../model/events'); 
 const path = require('path');
 const User = require('../model/user');
 let ObjectId = require('mongoose').Types.ObjectId;
@@ -92,5 +92,33 @@ Route.post('/delete/:id',(req,res)=>{
         }
     })
 
+})
+Route.post('/update/:id&:start&:end',(req,res)=>{
+    req.session.reload(function(error){
+        if(error){
+            res.status(500)
+            res.send('logout')
+            res.end()
+        }else{
+            if(req.session.user){
+                let idToUpdate = parseInt(req.params.id);                
+                    let start= req.params.start
+                    let end= req.params.end    
+                Evento.find({_id:idToUpdate}).exec((error,result)=>{
+                    Evento.update({_id:idToUpdate},{start:start,end:end},function(err,response){
+                        if(err){
+                            console.log(err)
+                        }else{
+                            console.log(response)
+                        }    
+                    })
+                })
+            }else{
+                res.status(500)
+                res.send('logout')
+                res.end()
+            }
+        }
+    })
 })
 module.exports = Route;

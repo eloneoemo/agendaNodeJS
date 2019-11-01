@@ -117,6 +117,30 @@ class EventManager {
                 }
             })
         }
+        actualizarEvento(evento) {
+
+            if(evento.end === null){
+              var start = moment(evento.start).format('YYYY-MM-DD'),
+                  url = '/events/update/'+evento._id+'&'+start+'&'+start
+            }else{
+              var start = moment(evento.start).format('YYYY-MM-DD HH:mm:ss'),
+                  end = moment(evento.end).format('YYYY-MM-DD HH:mm:ss'),
+                  url = '/events/update/'+evento._id+'&'+start+'&'+end
+            }
+  
+              var  data = { 
+                    id: evento._id, 
+                    start: start, 
+                    end: end 
+                }
+                $.post(url, data, (response) => { 
+                    if(response == "logout" ){
+                      this.sessionError()
+                    }else{
+                      alert(response)
+                    }
+                })
+          }
     }
 
     const Manager = new EventManager()
